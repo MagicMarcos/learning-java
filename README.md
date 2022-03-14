@@ -8,3 +8,7 @@ Although it is a positive that Classes and OOP are familiar concepts that help k
 
 ## Todo: 
 <p>Adding README files to all projects as well as other notes and take aways.</p>
+
+### Errors and Bugs
+<p>If something behaves unexpectedly, it is likely a bug. Create an issue and report it <a href="https://github.com/MagicMarcos/DreamOn/issues">here</a>  </p>
+<p>Suggestions and comments are also welcome.</p>
