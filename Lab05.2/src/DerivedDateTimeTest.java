@@ -73,7 +73,7 @@ class DerivedDateTimeTest {
      */
     public static void testEarlyRetirement() {
         // TODO
-        LocalDate bday = LocalDate.of(1994, 9, 01);
+        LocalDate bday = LocalDate.of(1998, 6, 10);
         LocalDate retirement = bday.plusYears(59).plusMonths(6);
 
         System.out.println(retirement);
@@ -87,7 +87,7 @@ class DerivedDateTimeTest {
      * RESULT:
      */
     public static void testLaborDay() {
-        LocalDate bday = LocalDate.of(1994, 9, 1);
+        LocalDate bday = LocalDate.of(1974, 1, 12);
         LocalDate laborDay = bday.with(TemporalAdjusters.firstInMonth(DayOfWeek.MONDAY));
         System.out.println(laborDay);
     }

@@ -12,7 +12,7 @@ public class Member {
 
     public Member() {
         // NOTE: there is a call to super() here! as the first line of code
-        // What's the superclass of Member?  Is there a no-arg ctor in that class?
+        // What's the superclass of Member?  Is there a no-arg ctor in that class? Object is the class
         System.out.println("Member ctor");
     }
 }

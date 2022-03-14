@@ -1,7 +1,8 @@
 package edu.dwaynejohnson;
 
 class Rock {
-    public Rock(String color){
-
+    @Override
+    public String toString(){
+        return "I am The Rock.";
     }
 }

@@ -9,15 +9,26 @@ public class SalariedEmployee extends Employee {
 
     // constructors
     public SalariedEmployee() {
+        // there is an implicit call to super() in this constructor
     }
 
     public SalariedEmployee(String name, LocalDate hireDate) {
         super(name, hireDate); // delegate to superclass ctor for name, hireDate
+
+        // registerInRetirementPlan();
+
     }
 
     public SalariedEmployee(String name, LocalDate hireDate, double salary) {
-        super(name, hireDate);
+        // use this() instead of super() so if we need any other methods (see above ex) we only need to write it once
+        this(name, hireDate); // delegate to neighboring ctor -- it delegates to superclass
         setSalary(salary);
+    }
+
+    // business methods
+    @Override
+    public void pay(){
+        System.out.println(getName() + " is paid salary $" + getSalary());
     }
 
     // accessor methods
@@ -30,8 +41,8 @@ public class SalariedEmployee extends Employee {
     }
 
     // toString()
+    @Override // overrides the Employee toString() method
     public String toString(){
-        return "Salaried Employee \n Name: " + getName() + ", hireDate: " + getHireDate() +
-                ", salary: $" + getSalary() ;
+        return super.toString() + ", salary: $" + getSalary() ;
     }
 }

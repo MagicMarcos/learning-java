@@ -18,9 +18,15 @@ public class HourlyEmployee extends Employee {
     }
 
     public HourlyEmployee(String name, LocalDate hireDate, double rate, double hours) {
-       super(name, hireDate);
+       this(name, hireDate);  // go "next door" before going "upstairs"
        setRate(rate);
        setHours(hours);
+    }
+
+    // business methods
+    @Override
+    public void pay(){
+        System.out.println(getName() + " is paid hourly $" + getRate() * getHours());
     }
 
     // accessor methods
@@ -41,8 +47,8 @@ public class HourlyEmployee extends Employee {
     }
 
     // to String
+    @Override //Overrides employee.toString() -- warns if anything is wrong with override method
     public String toString(){
-        return "Hourly Employee \n Name: " + getName() + ", hireDate: " + getHireDate() +
-                ", rate: $" + getRate() + ", hours: " + getHours();
+        return super.toString() + ", rate: $" + getRate() + ", hours: " + getHours();
     }
 }
