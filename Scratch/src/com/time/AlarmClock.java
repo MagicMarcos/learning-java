@@ -48,11 +48,17 @@ public class AlarmClock {
     }
 
     // DONE: add code to enforce a business rule: incoming value must be in [1,20]
-    public void setSnoozeInterval(int snoozeInterval) {
+    /*
+     * This method MIGHT throw IllegalArgumentException
+     * Since this is an UNCHECKED exception, we do not have to say "throws".
+     * However, saying it is a generally best practices, so we do anyways
+     * Throws simply says that this MIGHT throw an exception.
+     */
+    public void setSnoozeInterval(int snoozeInterval) throws IllegalArgumentException {
         if (snoozeInterval >= MIN_INTERVAL && snoozeInterval <= MAX_INTERVAL) {
             this.snoozeInterval = snoozeInterval;
         } else {
-            System.out.println("Invalid snoozeInterval: " + snoozeInterval + " minutes. " +
+            throw new IllegalArgumentException("Invalid snoozeInterval: " + snoozeInterval + " minutes. " +
                     "Must be between " + MIN_INTERVAL + " and " + MAX_INTERVAL + " minutes.");
         }
     }

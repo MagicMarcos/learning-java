@@ -8,9 +8,14 @@
 
 package com.hr.personnel;
 
+import gov.irs.IllegalWageException;
+
 import java.time.LocalDate;
 
 public class HourlyEmployee extends Employee {
+    // static fields
+    public static double FEDERAL_MINIMUM_WAGE = 15.00;
+
     // fields
     private double rate;
     private double hours;
@@ -23,7 +28,7 @@ public class HourlyEmployee extends Employee {
         super(name, hireDate);  // delegate to superclass ctor for name, hireDate
     }
 
-    public HourlyEmployee(String name, LocalDate hireDate, double rate, double hours) {
+    public HourlyEmployee(String name, LocalDate hireDate, double rate, double hours) throws IllegalArgumentException {
         this(name, hireDate);   // delegate to neighboring ctor for name, hireDate
         setRate(rate);          // handle rate here, by delegating to setter
         setHours(hours);        // handle hours here, by delegating to setter
@@ -42,12 +47,35 @@ public class HourlyEmployee extends Employee {
     }
 
     // accessor methods
-    public double getRate() {
-        return rate;
+    public double getFederalMinimumWage(){
+        return FEDERAL_MINIMUM_WAGE;
     }
 
-    public void setRate(double rate) {
-        this.rate = rate;
+
+    // May throw an IllegalArgumentException : THIS IS AN UNCHECKED EXCEPTION
+    public void setRate(double rate) throws IllegalArgumentException {
+        if(rate < getFederalMinimumWage()){
+            throw new IllegalArgumentException("Rate $" + rate + " must be at least the Federal Min Wage of $" +
+                    getFederalMinimumWage());
+        } else {
+            this.rate = rate;
+        }
+    }
+
+    /*
+    // May throw an IllegalWageException: THIS IS A CHECKED EXCEPTION
+    public void setRate(double rate) throws IllegalWageException {
+        if(rate < getFederalMinimumWage()){
+            throw new IllegalWageException("Rate $" + rate + " must be at least the Federal Min Wage of $" +
+                    getFederalMinimumWage());
+        } else {
+            this.rate = rate;
+        }
+    }
+     */
+
+    public double getRate() {
+        return rate;
     }
 
     public double getHours() {
