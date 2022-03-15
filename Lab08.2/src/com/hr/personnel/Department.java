@@ -59,6 +59,25 @@ public class Department {
         }
     }
 
+    /**
+     * Temporary office closure -> for all employees that take vacation:
+     * make them take vacation
+     * The rub: we can't call take vacation unless we have a reference type of Salaried Employee
+     * we can "ask" each "Employee" what type it is though..
+     * Once we know the type of employee we can call takeVacation()
+     */
+    public void holidayBreak(){
+        for (int i = 0 ; i < currentIndex; i++){
+            if(employees[i] instanceof SalariedEmployee) {
+                // use Downcasting -> think downcasting from Double to Int in earlier lab
+                // downcast Employee reference (employees[i]) to SalariedEmployee
+                // SalariedEmployee methods can be called
+                SalariedEmployee semp = (SalariedEmployee) employees[i];
+                semp.takeVacation();
+            }
+        }
+    }
+
     // helper method to add an Employee to the array
     public void addEmployee(Employee emp) {
         employees[currentIndex++] = emp;

@@ -29,8 +29,10 @@ class HRClient {
         //dept.addEmployee(new Employee("Jason", LocalDate.of(1990, 8, 24)));
         //dept.addEmployee(new Employee("Julie", LocalDate.of(2000, 2, 2)));
 
-        dept.addEmployee(new SalariedEmployee("Jason", LocalDate.of(1990, 8, 24), 177000.44));
-        dept.addEmployee(new HourlyEmployee("Julie", LocalDate.of(2000, 2, 2), 55.5 ,40.0));
+        dept.addEmployee(new SalariedEmployee("Jason",
+                LocalDate.of(1990, 8, 24), 177000.44));
+        dept.addEmployee(new HourlyEmployee("Julie",
+                LocalDate.of(2000, 2, 2), 55.5 ,40.0));
 
         // list its Employees
         System.out.println("\nList employees:");
@@ -42,8 +44,10 @@ class HRClient {
 
         System.out.println("-------------------------------------------------------------");
 
-        dept.addEmployee(new SalariedEmployee("Baggie", LocalDate.of(2005, 2, 4), 1000000.32));
-        dept.addEmployee(new HourlyEmployee("Marcos", LocalDate.of(1994, 9, 1), 3.50, 80.33 ));
+        dept.addEmployee(new SalariedEmployee("Baggie",
+                LocalDate.of(2005, 2, 4), 1000000.32));
+        dept.addEmployee(new HourlyEmployee("Marcos",
+                LocalDate.of(1994, 9, 1), 3.50, 80.33 ));
 
         // list its Employees
         System.out.println("\nList employees:");
@@ -56,5 +60,9 @@ class HRClient {
         // pay the employees
         System.out.println("\nPay employees:");
         dept.payEmployees();
+
+        // holiday break
+        System.out.println("\nSend them on vacation");
+        dept.holidayBreak();
     }
 }
