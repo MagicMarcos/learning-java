@@ -22,7 +22,17 @@ public class Corporation implements TaxPayer {
 
     @Override  // interface TaxPayer
     public void payTaxes() {
-        System.out.println(getName() + " paid no taxes - we lobbied hard and it worked");
+        System.out.println(getName() + " paid no taxes -- we lobbied hard and it worked");
+    }
+
+    @Override // interface TaxPayer
+    public void fileReturn() {
+        System.out.println("Return not filled -- we sent our lawyers instead.");
+    }
+
+    @Override // interface TaxPayer
+    public double getStandardDeduction() {
+        return 1_000_000.00;
     }
 
     public String getName() {

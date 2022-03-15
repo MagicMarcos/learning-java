@@ -8,7 +8,6 @@ public class HourlyEmployee extends Employee {
 
     // fields
     double rate;
-
     double hours;
 
     // constructors
@@ -35,7 +34,6 @@ public class HourlyEmployee extends Employee {
     public void payTaxes() {
         double taxes = getHours() * getRate() * HOURLY_TAX_RATE;
         System.out.println(getClass().getSimpleName() + " " + getName() + " paid $" + taxes + " in Taxes.");
-
     }
 
     // accessor methods

@@ -28,11 +28,14 @@ class TaxClient {
         // create Employees (Hourly or Salaried), and register them with the IRS
         // TODO: uncomment this block once you make employees taxpayers also
 
-        irs.register(new HourlyEmployee("Jason",  LocalDate.of(1990, 8, 24), 22.5, 40.0));
-        irs.register(new SalariedEmployee("Tina", LocalDate.of(2000, 2, 2), 1250.0));
-        irs.register(new HourlyEmployee("John",   LocalDate.of(2010, 10, 11), 25.0, 40.0));
-        irs.register(new SalariedEmployee("Jane", LocalDate.of(2005, 7, 1), 1500.0));
-
+        irs.register(new HourlyEmployee("Jason",
+                LocalDate.of(1990, 8, 24), 22.5, 40.0));
+        irs.register(new SalariedEmployee("Tina",
+                LocalDate.of(2000, 2, 2), 1250.0));
+        irs.register(new HourlyEmployee("John",
+                LocalDate.of(2010, 10, 11), 25.0, 40.0));
+        irs.register(new SalariedEmployee("Jane",
+                LocalDate.of(2005, 7, 1), 1500.0));
 
         // IRS collects taxes
         System.out.println("IRS collects taxes:");

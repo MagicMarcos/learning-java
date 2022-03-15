@@ -18,7 +18,6 @@ public class SalariedEmployee extends Employee {
         super(name, hireDate); // delegate to superclass ctor for name, hireDate
 
         // registerInRetirementPlan();
-
     }
 
     public SalariedEmployee(String name, LocalDate hireDate, double salary) {
@@ -41,6 +40,11 @@ public class SalariedEmployee extends Employee {
     public void payTaxes() {
         double taxes = getSalary() * SALARIED_TAX_RATE ;
         System.out.println(getClass().getSimpleName() + " " + getName() + " paid $" + taxes + " in taxes.");
+    }
+
+    @Override // interface TaxPayer
+    public double getStandardDeduction() {
+        return 10_000.00;
     }
 
     // accessor methods
