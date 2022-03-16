@@ -1,5 +1,8 @@
 package edu.calculations;
 
+//import static java.lang.Math.*; // We now don't need to call Math.random, just random() or any other methods
+// In this case, we create a loss of clarity, as some of our Calculator methods share the same name as Math methods
+
 /**
  * This is an "all-static" class... a class definition with nothingbut static methods.
  * You do not instantiate this class (clients do not say "new") - because there are no instance variables
@@ -67,7 +70,7 @@ class Calculator {
     public static int randInt(int min , int max){
         int result = 0;
 
-        double rand = Math.random();                // 0.0000 to  0.99999
+        double rand = Math.random();                     // 0.0000 to  0.99999
         double scaled = (rand * (max - min + 1)) ;  // 0.0000 to 70.99999
         double adjusted = scaled + min;             // 5.0000 to 75.99999
         result = (int) adjusted;

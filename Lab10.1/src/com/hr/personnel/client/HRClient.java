@@ -9,9 +9,10 @@
 package com.hr.personnel.client;
 
 import com.hr.personnel.Department;
-import com.hr.personnel.Employee;
 import com.hr.personnel.HourlyEmployee;
 import com.hr.personnel.SalariedEmployee;
+import gov.irs.IllegalWageException;
+
 import java.time.LocalDate;
 
 /**
@@ -25,10 +26,28 @@ class HRClient {
         System.out.println(dept);
 
         // add Employees to it
-        dept.addEmployee(new SalariedEmployee("Jason",  LocalDate.of(1990, 8, 24), 2250.0));
-        dept.addEmployee(new HourlyEmployee("Julie",    LocalDate.of(2000, 2, 2), 5.0, 30.0));
         dept.addEmployee(new SalariedEmployee("Amilia", LocalDate.of(1999, 2, 6), 1250.0));
-        dept.addEmployee(new HourlyEmployee("Logan",    LocalDate.of(2002, 6, 2), 40.0, 40.0));
+        dept.addEmployee(new SalariedEmployee("Jason", LocalDate.of(1990, 8, 24), 2250.0));
+
+        /*
+         * in our try catch, if the first hourly employee throws the error, no other employees are created after it.
+         * The code immediately jumps to the catch(), skipping the rest of the code - solve by introducing individual
+         * try/catch blocks
+         * having a try/catch removes the need for "throws exception" syntax in this block
+         */
+        try {
+            dept.addEmployee(new HourlyEmployee("Julie", LocalDate.of(2000, 2, 2), 55.0, 30.0));
+        }
+        catch (IllegalWageException e) {
+            System.out.println("  ERROR: " + e); // toString() automatically called
+        }
+
+        try {
+            dept.addEmployee(new HourlyEmployee("Logan", LocalDate.of(2002, 6, 2), 40.0, 40.0));
+        }
+        catch (IllegalWageException e) {
+            System.out.println("  ERROR: " + e); // toString() automatically called
+        }
 
         // list its Employees
         System.out.println("\nList employees:");
@@ -43,3 +62,4 @@ class HRClient {
         dept.payEmployees();
     }
 }
+

@@ -28,7 +28,7 @@ public class HourlyEmployee extends Employee {
         super(name, hireDate);  // delegate to superclass ctor for name, hireDate
     }
 
-    public HourlyEmployee(String name, LocalDate hireDate, double rate, double hours) throws IllegalArgumentException {
+    public HourlyEmployee(String name, LocalDate hireDate, double rate, double hours) throws IllegalWageException {
         this(name, hireDate);   // delegate to neighboring ctor for name, hireDate
         setRate(rate);          // handle rate here, by delegating to setter
         setHours(hours);        // handle hours here, by delegating to setter
@@ -51,8 +51,8 @@ public class HourlyEmployee extends Employee {
         return FEDERAL_MINIMUM_WAGE;
     }
 
-
-    // May throw an IllegalArgumentException : THIS IS AN UNCHECKED EXCEPTION
+    /*
+    // May throw an IllegalArgumentException : this is an UNCHECKED EXCEPTION
     public void setRate(double rate) throws IllegalArgumentException {
         if(rate < getFederalMinimumWage()){
             throw new IllegalArgumentException("Rate $" + rate + " must be at least the Federal Min Wage of $" +
@@ -61,18 +61,18 @@ public class HourlyEmployee extends Employee {
             this.rate = rate;
         }
     }
+    */
 
-    /*
-    // May throw an IllegalWageException: THIS IS A CHECKED EXCEPTION
+    // May throw an IllegalWageException: this is a CHECKED EXCEPTION
     public void setRate(double rate) throws IllegalWageException {
-        if(rate < getFederalMinimumWage()){
+        if(rate >= getFederalMinimumWage()){
+            this.rate = rate;
+        } else {
             throw new IllegalWageException("Rate $" + rate + " must be at least the Federal Min Wage of $" +
                     getFederalMinimumWage());
-        } else {
-            this.rate = rate;
         }
     }
-     */
+
 
     public double getRate() {
         return rate;

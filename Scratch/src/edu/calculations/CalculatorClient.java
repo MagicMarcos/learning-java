@@ -1,17 +1,20 @@
 package edu.calculations;
 
+import static edu.calculations.Calculator.*; // considered ok to use * in this case
+// allows us to call methods without saying Calculator.isEven() -> just isEven()
+
 class CalculatorClient {
     public static void main(String[] args) {
         // no need to call new edu.calculations.Calculator, this is an all-static class (just use dot notation i.e., edu.calculations.Calculator.add)
 
         // hold the variable here if you plan on reusing it
-        double sum = Calculator.add(1, 2);
+        double sum = add(1, 2);
         System.out.println("The sum is: " + sum);
 
         // you can call the method inline if you don't plan on reusing the method call result
         System.out.println("The difference is: " + Calculator.subtract(4.7, 3.8));
 
-        boolean result = Calculator.isEven(9);
+        boolean result = isEven(9);
         System.out.println("The number 9 is even. " + result);
 
         System.out.println("The number 2 is even. " + Calculator.isEven(2));
