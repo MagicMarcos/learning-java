@@ -1,13 +1,22 @@
 package com.hr.client;
 
+import com.hr.Employee;
+import com.hr.WorkException;
+
 public class EmployeeClient {
 
     public static void main(String[] args) {
-        // TODO: create an instance of Employee
+        Employee emp = new Employee("Marcos");
 
+        try {
+            emp.goToWork();
+        } catch (WorkException e) {
+            // NOTE the packages on these exceptions
+            System.out.println(e); // toString() called automatically
+            System.out.println(e.getCause()); //  nested exception inside
+            System.out.println();
 
-        // TODO: call goToWork() on the Employee object
-
-
+            e.printStackTrace(); // automatically calls System.out. NOTE "Caused by:" in console
+        }
     }
 }

@@ -25,8 +25,16 @@ public class Car extends Vehicle {
         System.out.println("Car stopped");
     }
 
-    public void moveTo(String location) {
-        System.out.println(getMake() + " " + getModel() + " moving to " + location);
+    /*
+     * NOTE: As of early 2020, can't get to West Seattle by car.
+     */
+    public void moveTo(String location) throws DestinationUnreachableException{
+        if(location.equalsIgnoreCase("West Seattle")) {
+            throw new DestinationUnreachableException("  Can't get to location "  + location +
+                    " Bridge closed due to excessive cracking. Duct Tape not ready.");
+        } else {
+            System.out.println(getMake() + " " + getModel() + " moving to " + location);
+        }
     }
 
     // ACCESSOR METHODS

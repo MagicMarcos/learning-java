@@ -9,7 +9,7 @@ public abstract class Vehicle {
         this.vin = vin;
     }
 
-    // BUSINESS METHODS
+    // BUSINESS METHODS -- all subclasses MUST have moveTo() - have right to throw exception, but don't HAVE to
     public abstract void moveTo(String location) throws DestinationUnreachableException;
 
     // ACCESSOR METHODS
