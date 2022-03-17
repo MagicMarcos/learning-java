@@ -1,26 +1,26 @@
 package com.duckrace;
 
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 public class DuckRacer {
     // fields
     private int id;
     private String name;
-//    private int wins; -- not needed as we can use length property of Reward[]
-    private Reward[] rewards = new Reward[25];  // populate with 25 nulls
-    private int currentIndex = 0;               // position of the next Reward
+    //    private int wins; -- not needed as we can use length property of Reward[]
+    private Collection<Reward> rewards = new ArrayList<>();
 
     // constructors
-    public DuckRacer(int id , String name) {
+    public DuckRacer(int id, String name) {
         this.id = id;
         this.name = name;
     }
 
     // business methods
-    public void win(Reward reward){
-        rewards[currentIndex ++] = reward;
+    public void win(Reward reward) {
+        rewards.add(reward);
     }
 
     // accessor methods
@@ -34,15 +34,11 @@ public class DuckRacer {
     }
 
     public int getWins() {
-        return currentIndex;
+        return rewards.size();
     }
 
-    /*
-     * Returns the rewards this duck racer has chosen so far
-     * Note the returned array should not contain null, just the filled in slots
-     */
-    public Reward[] getRewards(){
-        return Arrays.copyOf(rewards, currentIndex);
+    public List<Reward> getRewards() {
+        return (List<Reward>) rewards;
     }
 
     // toString()
@@ -50,8 +46,8 @@ public class DuckRacer {
         return "DuckRacer: " +
                 "id= " + id +
                 ", name= '" + name + '\'' +
-                ", rewards= " + Arrays.toString(getRewards()) +
-                ", number of wins= " + currentIndex +
+                ", rewards= " + getRewards() +
+                ", number of wins= " + getWins() +
                 '.';
     }
 }

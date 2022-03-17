@@ -3,8 +3,6 @@ package com.duckrace.client;
 import com.duckrace.DuckRacer;
 import com.duckrace.Reward;
 
-import java.util.Arrays;
-
 class DuckRacerTest {
     public static void main(String[] args) {
         DuckRacer racer = new DuckRacer(1, "Marcos");
@@ -15,12 +13,17 @@ class DuckRacerTest {
         racer.win(Reward.DEBIT_CARD);
         racer.win(Reward.DEBIT_CARD);
         racer.win(Reward.DEBIT_CARD);
-        racer.win(Reward.DEBIT_CARD);
+        racer.win(Reward.PRIZES);
+
 
         System.out.println(racer.getName() + " has won " + racer.getWins() + " races!");
 
-        // TODO: find out which rewards a racer has chosen
-        System.out.println(racer.getName() + " has these rewards: " + Arrays.toString(racer.getRewards()));
+        // DONE: find out which rewards a racer has chosen
+        System.out.println(racer.getName() + " has these rewards: " + racer.getRewards());
+
+        // I need to know what racer's first choice of reward was.
+        Reward firstReward = racer.getRewards().get(0);
+        System.out.println(racer.getName() + " chose " + firstReward + " as it's first reward.");
 
         // show toString() in action
         System.out.println(racer);
