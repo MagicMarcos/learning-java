@@ -9,6 +9,8 @@
 package com.poetry.io;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class PoemClient {
 
@@ -16,8 +18,8 @@ public class PoemClient {
      * To run one method at a time, uncomment the call to the one you want to execute.
      */
     public static void main(String[] args) {
-        // readPoem();
-         writePoem();
+         readPoem();
+        // writePoem();
     }
 
     /**
@@ -32,18 +34,28 @@ public class PoemClient {
      * Use a BufferedReader wrapped around a FileReader.
      * The try-with-resources below allows you to initialize the stream and auto-close it.
      */
-//    private static void readPoem()  {
-//        // TODO: initialize 'reader' variable and complete the try block
-//        try (BufferedReader reader = new BufferedReader(new FileReader("famo5us-poem.txt"))) {
-//            String line;
-//            while((line = reader.readLine()) != null) {
-//                System.out.println(line);
-//            }
-//        }
-//        catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    private static void readPoem()  {
+        try (BufferedReader reader = new BufferedReader(new FileReader("famous-poem.txt"))) {
+            String line;
+            while((line = reader.readLine()) != null) {
+                System.out.println(line);
+            }
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // NOTE: Files class is for convenience... Not recommended for really large files!
+        try {
+            // as of Java11, the preferred method is Paths.of() -- .get is Java8
+            String poem = Files.readString(Paths.get("very-sad-haiku.txt"));
+            System.out.println(poem);
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
 
     /**
      * TASK: write a Haiku to file 'haiku.txt'.
