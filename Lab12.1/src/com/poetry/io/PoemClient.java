@@ -8,8 +8,7 @@
 
 package com.poetry.io;
 
-import java.io.BufferedReader;
-import java.io.IOException;
+import java.io.*;
 
 public class PoemClient {
 
@@ -18,7 +17,7 @@ public class PoemClient {
      */
     public static void main(String[] args) {
         // readPoem();
-        // writePoem();
+         writePoem();
     }
 
     /**
@@ -33,15 +32,18 @@ public class PoemClient {
      * Use a BufferedReader wrapped around a FileReader.
      * The try-with-resources below allows you to initialize the stream and auto-close it.
      */
-    private static void readPoem() {
-        // TODO: initialize 'reader' variable and complete the try block
-        try (BufferedReader reader = null) {
-
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+//    private static void readPoem()  {
+//        // TODO: initialize 'reader' variable and complete the try block
+//        try (BufferedReader reader = new BufferedReader(new FileReader("famo5us-poem.txt"))) {
+//            String line;
+//            while((line = reader.readLine()) != null) {
+//                System.out.println(line);
+//            }
+//        }
+//        catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     /**
      * TASK: write a Haiku to file 'haiku.txt'.
@@ -56,5 +58,15 @@ public class PoemClient {
      */
     private static void writePoem() {
         // TODO
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("very-sad-haiku.txt"))){
+            writer.write("I re-read my code");
+            writer.newLine();
+            writer.write("Check all my methods and fields");
+            writer.newLine();
+            writer.write("Cry! FileNotFoundException");
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
