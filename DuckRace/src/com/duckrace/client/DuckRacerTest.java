@@ -3,6 +3,8 @@ package com.duckrace.client;
 import com.duckrace.DuckRacer;
 import com.duckrace.Reward;
 
+import java.util.List;
+
 class DuckRacerTest {
     public static void main(String[] args) {
         DuckRacer racer = new DuckRacer(1, "Marcos");
@@ -27,5 +29,17 @@ class DuckRacerTest {
 
         // show toString() in action
         System.out.println(racer);
+
+        /*
+          * NOTE: As it stands we can cheat by adding rewards without calling winning
+          *
+          * List<Reward> rewardList = racer.getRewards();
+                rewardList.add(Reward.DEBIT_CARD);
+                rewardList.add(Reward.PRIZES);
+                System.out.println("cheater! " + racer);
+          *
+          * FIXED: used copyOf() method on getRewards() -- List is now "Read-Only"
+         */
+
     }
 }

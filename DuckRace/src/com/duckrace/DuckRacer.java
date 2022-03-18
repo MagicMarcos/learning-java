@@ -37,8 +37,14 @@ public class DuckRacer {
         return rewards.size();
     }
 
+    /*
+     * CAUTION: we are returning a DIRECT REFERENCE to this "sensitive data"
+     * as is we can change this list without calling WIN method
+     * FIXED: by using copyOf() we made this List "Read Only"
+     */
     public List<Reward> getRewards() {
-        return (List<Reward>) rewards;
+        // return (List<Reward>) rewards; -- UNSAFE
+        return List.copyOf(rewards);
     }
 
     // toString()

@@ -8,9 +8,7 @@
 
 package com.javatunes.catalog;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 // OF COURSE THIS CLASS DOESN'T COMPILE
 // Your first job is to fulfill the contract that this class has signed.
@@ -37,6 +35,58 @@ public class InMemoryCatalog implements Catalog {
         new MusicItem(17L, "1984",                      "Van Halen",                 "1984-08-19", 11.97, MusicCategory.ROCK),
         new MusicItem(18L, "Escape",                    "Journey",                   "1981-02-25", 11.97, MusicCategory.CLASSIC_ROCK))
     );
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder(getClass().getSimpleName() + ": \n");
+        for (MusicItem item: catalogData) {
+            builder.append(item).append("\n");
+        }
+        return builder.toString();
+    }
+
+    @Override
+    public MusicItem findById(Long id) { // e.g. client passes in 8
+        MusicItem item = null;
+
+        // iterate over the List<MusicItem> and find the one with id 8
+        for (MusicItem currentItem: catalogData) {
+            if (currentItem.getId().equals(id)) { // capital L long - is an OBJECT, must use .equals()
+                item = currentItem;
+                break;
+            }
+        }
+        return item;
+    }
+
+    @Override
+    public Collection<MusicItem> findByKeyword(String keyword) {
+        return null;
+    }
+
+    @Override
+    public Collection<MusicItem> findByCategory(MusicCategory category) {
+        // set result to an empty collection, so we don't return null (as specced)
+        Collection<MusicItem> result = new ArrayList<>();
+
+        for (MusicItem item : catalogData) {
+            if(item.getMusicCategory().equals(category)) {
+                result.add(item);
+            }
+        }
+
+        return result;
+    }
+
+    @Override
+    public int size() {
+        return catalogData.size();
+    }
+
+    @Override
+    public Collection<MusicItem> getAll() {
+        return null;
+    }
 
 
     /**
@@ -65,31 +115,92 @@ public class InMemoryCatalog implements Catalog {
      * TASK: find all MusicItems where title is same as artist.
      * For example, Madonna's first album is simply titled, "Madonna."
      */
+    @Override
+    public Collection<MusicItem> findSelfTitled() {
+        Collection<MusicItem> result = new ArrayList<>();
 
+        for (MusicItem item : catalogData) {
+            if (item.getTitle().equals(item.getArtist())) {
+                result.add(item);
+            }
+        }
+
+        return result;
+    }
 
     /**
      * TASK: find all "rock" items whose price is less than or equal to the specified price.
      */
+    @Override
+    public Collection<MusicItem> findCheapRock(double price) {
+        Collection<MusicItem> result = findByCategory(MusicCategory.ROCK);
 
+//        for (MusicItem item : result) {
+//            if (item.getPrice() > price) {
+//                result.remove(item);
+//            }
+//        }
+
+        result.removeIf(item -> item.getPrice() > price);
+
+        return result;
+    }
 
     /**
      * TASK: how many items of the specified genre (MusicCategory) do we sell?
      */
+    @Override
+    public int howMany(MusicCategory genre) {
 
+        return findByCategory(genre).size();
+    }
 
     /**
      * TASK: determine average price of our low-cost, extensive catalog of music.
      */
+    @Override
+    public double averagePrices() {
+        double sum = 0.0;
 
+        for (MusicItem item : catalogData) {
+            sum += item.getPrice();
+        }
 
-    /**
-     * TASK: find the cheapest item with the specified genre (MusicCategory).
-     */
-
+        return sum / catalogData.size();
+    }
 
     /**
      * TASK: find the average price of items in the specified genre (MusicCategory).
      */
+    @Override
+    public double averagePrices(MusicCategory genre) {
+
+        Collection<MusicItem> genreList = findByCategory(genre);
+
+        double sum = 0.0;
+
+        for (MusicItem item : genreList) {
+            sum += item.getPrice();
+        }
+
+        return sum / genreList.size();
+    }
+
+    /**
+     * TASK: find the cheapest item with the specified genre (MusicCategory).
+     */
+    public MusicItem cheapestInGenre(MusicCategory genre) {
+
+        Collection<MusicItem> genreList = findByCategory(genre); // collection of the genre
+
+        TreeMap<Double, MusicItem> idPricePairs = new TreeMap<>(); // sorts by "natural order"
+
+        for (MusicItem item : genreList) {
+            idPricePairs.put(item.getPrice(), item);
+        }
+
+        return idPricePairs.get(idPricePairs.firstKey());
+    }
 
 
     /**
@@ -122,12 +233,4 @@ public class InMemoryCatalog implements Catalog {
      */
 
 
-    @Override
-    public String toString() {
-        StringBuilder builder = new StringBuilder(getClass().getSimpleName() + ": \n");
-        for (MusicItem item: catalogData) {
-            builder.append(item).append("\n");
-        }
-        return builder.toString();
-    }
 }

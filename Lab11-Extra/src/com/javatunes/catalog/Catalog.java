@@ -43,4 +43,13 @@ public interface Catalog {
      * See java.util.Collections class (an all-static utility class) for help here.
      */
     public Collection<MusicItem> getAll();
+
+    public Collection<MusicItem> findSelfTitled();
+
+    public Collection<MusicItem> findCheapRock(double price);
+
+    public int howMany(MusicCategory genre);
+
+    public double averagePrices();
+    public double averagePrices(MusicCategory genre);
 }
